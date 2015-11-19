@@ -1,0 +1,138 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}  % used to insert graph
+\usepackage{subcaption}  % used to insert subgraph
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usetikzlibrary{trees}
+
+%% for code listing
+\usepackage{listings}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=2mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=false, %true,
+  breakatwhitespace=false, %true,
+  tabsize=3
+}
+
+
+\geometry{left=2.5cm,right=3 cm, top=2.5cm,bottom=2.5cm}
+\lhead{Chapter 4-1}
+\chead{Graph Theory HW-7}
+\rhead{Yang Hang, r03942126}
+
+\begin{document}
+\pagestyle{fancy}
+\textbf{Notations:} $n(G)$: number of vertices of graph $G$.
+\begin{enumerate}
+\item[\textbf{4.1}] 
+\begin{proof}
+Let $g_n$ denote number of perfect matching of $Q_n$. \\
+Assume a series $h_n = 2^{2^{n-2}}$, we have $h_n = h_{n-1}^2$. First, $g_2 = h_2$. Then to prove $g_n \geq h_n = h_{n-1}^2$, it is sufficient to prove $g_n \geq g_{n-1}^2$. \\
+$Q_n$ is induced by $Q_{n-1}$. $n(Q_n) = 2n(Q_{n-1})$. $Q_n$ is formed by $Q_{n-1}$ with a more bit sequence and its counterpart $Q_{n-1}^\prime$ having the same topology with $Q_{n-1}$. Vertex in one part has 1-to-1 link with vertex of the other part. \\
+In this way, $Q_{n-1}, Q_{n-1}^\prime$ both have $g_{n-1}$ perfect matching. Therefore, $g_n \geq g_{n-1}^2$. 
+\end{proof}
+% -----------------------------------------
+\item[\textbf{4.6}] 
+We can get that $G$ has at least $r$ X-perfect matchings. 
+\begin{proof}
+With some vertex $x$ in $X$, it has at least $r$ edges with $Y$. Select one edge $xy_1$, the remaining graph $G^\prime$ still satisfies that $N(S) \geq |S|$, i.e. a perfect matching exists in $G^\prime$. We have $r$ choices of $xy_i$. Therefore, $G$ has at least $r$ different $X$-perfect matching. 
+\end{proof}
+% -----------------------------------------
+\item[\textbf{4.8}] 
+\begin{proof}
+Proof consists of two parts. The two people are denoted by $A,B$.\\ 
+\textbf{(1)} If $G$ has perfect matching $M$. The strategy of $B$ is to select the vertex that the edge between this vertex and vertex selected by $A$ last time belongs to $M$.\\
+Whatever dose $A$ selects, $B$ can always find an vertex adjacent that the edge between them belongs to $M$, because $G$ has a perfect matching.\\
+\textbf{(2)} If $G$ doesn't have perfect matching. The strategy of $A$ is to select the vertex not joining with edge which belongs to maximum matching.\\
+In this way, $B$ can only select an vertex joining an edge which doesn't belong to the maximum matching. After $B$'s turn, $A$ can always find an vertex which joining an edge belongs to the maximum matching.
+\end{proof}
+% -----------------------------------------
+\item[\textbf{4.10}]\textbf{Birkhoff Theorem Proof} \\
+Form associated graph of \textbf{doubly stochastic matrix} $Q$. Use following matrix as an example. 
+\begin{equation*}
+Q =
+\begin{pmatrix}
+1/3 & 1/2 & 1/6 \\
+0   & 1/3 & 2/3 \\
+2/3 & 1/6 & 1/6
+\end{pmatrix}
+\end{equation*}
+Associated graph is as following Figure \ref{10}. 
+\begin{figure}[htp!]
+	\centering
+	\includegraphics[width=.25\linewidth]{./figure/4_10.png}
+	\caption{Associated graph of $Q$}
+	\label{10}
+\end{figure} 
+\newtheorem{lemma}{Lemma} 
+\begin{lemma}
+Associated graph of doubly stochastic matrix has a perfect matching.
+\end{lemma}
+\begin{proof}[Proof of lemma]
+There is a subset $A$ of the vertices in one part such that the set $R(A)$ of all vertices connected to some vertex in $A$ has strictly less than $|A|$ elements. Without loss of generality, $A$ is a set of vertices representing rows while $R(A)$ represents columns. \\
+We have $\sum_{i\in A, j\in R(A)} x_{i,j} = |A|$
+and $\sum_{i\in A, j\in R(A)} x_{i,j} \leq |R(A)|$. 
+Then Hall's condition is satisfied, a perfect matching exists. 
+\end{proof}
+\begin{proof}[Proof of Birkhoff Theorem] 
+We proceed by induction on non-zero entries in matrix. 
+Let $M_0$ be doubly stochastic matrix. By the lemma, the associated graph has a perfect matching. Use above $Q$ as an example, $(1,1), (2,2),(3,3)$ is a perfect matching.
+Let $\alpha_0$ be the minimum of the entries indexed by the matching, $1/6$. 
+Let $P_0$ be the permutation matrix with 1 exactly at position of the matching. 
+Then $M_0-\alpha_0 P_0$ has non-negative entries. Dividing each entry by $(1-\alpha_0)$ in $M_0-\alpha_0 P_0$ gives a doubly stochastic matrix $M_1$.
+Then $M_0 = \alpha_0 P_0 + (1 - \alpha_0) M_1$, where $M_1$ has less non-negative entries than $M_0$.
+By induction hypothesis, $M_1$ may be written as $M_1 = \alpha_1 P1 + \alpha_2 P_2 \dots + \alpha_n P_n$. 
+Therefore, we have
+\begin{equation*}
+Q = M_0 = \alpha_0 P_1 + (1-\alpha_0)\alpha_1 P_1 + \dots +(1- \alpha_0)\alpha_n P_n
+\end{equation*}
+Let $\alpha_0 = c_1, (1-\alpha_0)\alpha_1 = c_2, \dots $, where  $$\sum_i^m c_i = \alpha_0 + (1-\alpha_0)(\alpha_1 + \alpha_2 + \dots + \alpha_{m-1}) = \alpha_0 + (1-\alpha_0) = 1$$
+\end{proof}
+% -----------------------------------------
+\item[\textbf{4.13}] 
+\begin{proof}[a Proof]
+\textit{Necessity}. $S$ is an independent set. That means no edges joining vertices in $S$. Therefore, $\overline{S}$ is a vertex cover.\\
+\textit{Sufficiency}. $\overline{S}$ is an vertex cover. If $S$ is not an independent set, i.e. edge ${e: xy}$ exists joining vertices $x,y$ in $S$. It contradicts that $\overline{S}$ covers all edges of graph.   \\
+Hence, every maximum independent set is the complement of a minimum vertex cover, and $\alpha(G) + \beta(G) = |V(G)|$.
+\end{proof}
+\begin{proof}[b Proof]
+With a maximum matching $M$, we try to construct an edge cover of size $n(G)- |M|$. Since the minimum edge cover won't be larger than this cover, it implies that $\beta^\prime(G) \leq n(G) - \alpha^\prime(G)$.
+On the other hand, with a minimum edge cover $L$, we try to construct a maximum matching of size $n(G)-|L|$. Since maximum matching, $\alpha^\prime(G) \geq n(G) - \beta^\prime(G)$. Then we have $\alpha^\prime(G) + \beta^\prime(G) = n(G)$. Following are procedures to find such edge cover and mathcing.\\
+Let $M$ be the maximum matching of graph $G$. We construct an edge cover by adding to $M$ one edge incident to each unsaturated vertex, one edge to one vertex. The number of unsaturated vertices is $n(G) - 2|M|$, including $M$ we will get an edge cover of size $n(G)-2|M| + |M| = n(G)-|M|$.\\
+Let $L$ be the minimum edge cover. If both endpoints of edge $e$ belong to edge in $L$ other than $e$, then $e \not\in L$, since $L-{e}$ is also an edge cover. 
+Hence each component of $L$ has only one vertex with degree larger than 1, i.e. forming a star. Then we make a matching by selecting one edge of each star. Size of the matching will be $n(G)- |L|$.
+\end{proof}
+\begin{proof}[c Proof]
+From above $a,b$, we have $\alpha(G)+\beta(G)=\alpha^\prime(G)+ \beta^\prime(G)$. From \textbf{Thm 4.9}, we have $\alpha^\prime(G) = \beta(G)$. Hence, $\alpha(G) = \beta^\prime(G)$.
+\end{proof}
+\end{enumerate}
+
+
+
+%@online{WinNT,
+%  author = {MultiMedia LLC},
+%  title = {{MS Windows NT} Kernel Description},
+%  year = 1999,
+%  url = {http://math2.uncc.edu/~ghetyei/courses/old/F07.3116/birkhofft.pdf},           
+%}
+\end{document}
+
