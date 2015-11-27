@@ -1,0 +1,106 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}  % used to insert graph
+\usepackage{subcaption}  % used to insert subgraph
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usetikzlibrary{trees}
+
+%% for code listing
+\usepackage{listings}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=2mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=false, %true,
+  breakatwhitespace=false, %true,
+  tabsize=3
+}
+
+
+\geometry{left=2.5cm,right=3 cm, top=2.5cm,bottom=2.5cm}
+\lhead{Chapter 5-2}
+\chead{Graph Theory HW-10}
+\rhead{Yang Hang, r03942126}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{enumerate}
+% -----------------------------------------------------------------------------
+\item[\textbf{5.11}] 
+Do degree ear decomposition; then no link exists between neighbor of joint vertex on cycle or previous ear and the neighbor on current ear,i.e. no edge $ac, cd, eh, gh$ as in Figure \ref{11}. 
+Otherwise, a large cycle $a-bca$ exists.\\
+What's more, since $G$ is claw-free, $ad, eg$ must exist. Then we can find disjoint graph $P_3$ as follow. \\
+Select graph $P_3$ from ear $P_n$ to $P_0$. $k = 0,1,2,...,$ For ear $P_i$, if $n(P_i) = 3(k+1)$, we can select $k$ disjoint graph $P_3$. Then the neighbor of joint vertex will help hold 2-connectivity for remaining graph.\\
+If $n(P_i) = 3k+1$, select $k$ graph $P_3$ from one endpoint. The other endpoint remains. \\
+If $n(P_i) = 3k + 2$, select $k$ graph $P_3$ among the middle vertices of ear $P_i$. \\
+Use the method above, 2-connectivity holds after selecting one ear. No vertex is "wasted". Therefore, we can find $\lfloor n(G)/3\rfloor $ graph $P_3$. 
+\begin{figure}[hbp!]
+	\centering
+	\includegraphics[width=.3\linewidth]{./figure/5_11.png}
+	\caption{Greedy ear decomposition}
+	\label{11}
+\end{figure} 
+
+% -----------------------------------------------------------------------------
+\item[\textbf{5.13}]
+\begin{proof}
+We prove the contrary that \textit{if each block of $G$ is not an edge or odd cycle, even cycle exits in $G$}. Proof are in two parts.\\
+If $G$ is 1-connected, such an edge exists that it is the only edge connecting two blocks. This edge is the block of edge. It contradicts the condition.\\
+$G$ must be 2-connected; then it has an ear decomposition. For ear $P_0,P_1$, two uncover cycles are odd cycles. The big cycle will be an even cycle.\\ 
+\end{proof}
+
+% ----------------------------------------------------------------------------------------------
+\item[\textbf{5.14}]
+\begin{proof}
+We prove by find $k$ disjoint paths between arbitrary $x,y$.\\
+$k=1$ is trivial. For $k\leq 2$, we can draw the $Q_k$ as $k-1$ slices. The slice is a cycle of 4 vertices, and each slice is connected with all other slices by links between corresponding vertices, $Q_4$ in Figure \ref{14} as an example.\\
+For $x,y$ are in the same slice. We can find two disjoint paths among the slice. And find other $k-2$ disjoint paths by going from $x$ to other $k-2$ slices then going through the slice to the counterpart vertex of $y$ at last reaching $y$. Total in $k$ paths. \\
+For $x,y$ not in the same slice, we can find three disjoint paths between the two slices of $x,y$ reaching $y$. And find another $k-3$ disjoint paths by going from $x$ to other slices first then do as former situation. \\
+Above all, $Q_k$ is $k$-connected. 
+\begin{figure}[htbp!]
+	\centering
+	\includegraphics[width=.3\linewidth]{./figure/5_14.png}
+	\caption{$Q_4$}
+	\label{14}
+\end{figure} 
+\end{proof}
+% ----------------------------------------------------------------------------------------------
+\item[\textbf{5.17}]
+\item[(1)]
+\begin{proof}
+Since $G$ is two-connected, $\delta(G) \leq 2$. We prove when $\delta(G)\leq 3$, $G$ is not minimally 2-connected.\\
+Do ear decomposition. In last ear $P_n$, for $v \in P_n\backslash {endpoints}$, since $\delta(G)\leq 3$, an $v$-induced edge $e$ exists that $e\not\in P_i$. So $G-e$ is still 2-connected, which contradicts definition of minimal 2-connected. 
+\end{proof}
+\item[(2)]
+\begin{proof}
+
+\end{proof}
+
+% ----------------------------------------------------------------------------------------------
+\item[\textbf{5.10}]
+\textit{Sufficiency}. Sufficiency is obvious. Remove arbitrary vertex $x$, we can always find a path between an arbitrary pair of vertex, i.e. connected. With \textbf{Thm 5.10(1)}, $G$ is 2-connected.\\
+\textit{Necessity}.
+With \textbf{Thm 5.10(2)}, for any $x,y$, we can find two disjoint paths $x-y$, denoted by $P_1,P_2$. Similarly, two disjoint paths $y-z$  are denoted by $Q_1,Q_2$. If $P_i\cap Q_j = \emptyset, i,j = 1,2$, such a path $x-z$ that go through $y$ exists as $P_i+Q_j$.\\
+If $P_i\cap Q_j \neq \emptyset, \forall i,j = 1,2$, Figure \ref{10} as an example, we can also find a path $x-z$ going through $y$. For example, path $x$ go along $P_2$ to $y$, then along $P_1$ to $b$, finally along $Q_1$ to $z$ is such a path.
+
+\end{enumerate}
+
+\end{document}
+
