@@ -51,13 +51,21 @@ Select graph $P_3$ from ear $P_n$ to $P_0$. $k = 0,1,2,...,$ For ear $P_i$, if $
 If $n(P_i) = 3k+1$, select $k$ graph $P_3$ from one endpoint. The other endpoint remains. \\
 If $n(P_i) = 3k + 2$, select $k$ graph $P_3$ among the middle vertices of ear $P_i$. \\
 Use the method above, 2-connectivity holds after selecting one ear. No vertex is "wasted". Therefore, we can find $\lfloor n(G)/3\rfloor $ graph $P_3$. 
-\begin{figure}[hbp!]
-	\centering
-	\includegraphics[width=.3\linewidth]{./figure/5_11.png}
-	\caption{Greedy ear decomposition}
-	\label{11}
-\end{figure} 
 
+\begin{figure}[ht!]
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{./figure/5_11.png}
+  \caption{Greedy ear decomposition}
+  \label{11}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{./figure/5_14.png}
+  \caption{$Q_4$}
+  \label{14}
+\end{minipage}
+\end{figure}
 % -----------------------------------------------------------------------------
 \item[\textbf{5.13}]
 \begin{proof}
@@ -74,12 +82,6 @@ $k=1$ is trivial. For $k\leq 2$, we can draw the $Q_k$ as $k-1$ slices. The slic
 For $x,y$ are in the same slice. We can find two disjoint paths among the slice. And find other $k-2$ disjoint paths by going from $x$ to other $k-2$ slices then going through the slice to the counterpart vertex of $y$ at last reaching $y$. Total in $k$ paths. \\
 For $x,y$ not in the same slice, we can find three disjoint paths between the two slices of $x,y$ reaching $y$. And find another $k-3$ disjoint paths by going from $x$ to other slices first then do as former situation. \\
 Above all, $Q_k$ is $k$-connected. 
-\begin{figure}[htbp!]
-	\centering
-	\includegraphics[width=.3\linewidth]{./figure/5_14.png}
-	\caption{$Q_4$}
-	\label{14}
-\end{figure} 
 \end{proof}
 % ----------------------------------------------------------------------------------------------
 \item[\textbf{5.17}]
@@ -90,15 +92,17 @@ Do ear decomposition. In last ear $P_n$, for $v \in P_n\backslash {endpoints}$, 
 \end{proof}
 \item[(2)]
 \begin{proof}
-
+Graph $G$ is minimally $k$-edge-connected. So $\delta(G) \leq k$. Then we find the vertex whose degree is $k$.\\
+We can find a pair vertice $x,y$ with $k$ edge-disjoint paths between $x,y$. Add vertice $x^\prime, y^\prime$ connected with $x,y$ respectively. Then draw a corresponding graph $G^\prime$ of $G$ with vertex as edge of $G$ and edge existing if edges in $G$ are connected. \\
+In this way, $G^\prime$ will be a minimally $k$-connected graph. According to \textbf{5.17(1)}, $\delta(G^\prime) = k$. 
+We claim $\delta_{G^\prime}(xx^\prime)=k$. Because if another pair $u,v$ which has more than $k$ edge-disjoint paths, $\delta_{G^\prime}(u) = k+1$. 
+Then in graph $G$, $deg(x) = k$, i.e. $\delta(G) = k$.    
 \end{proof}
 
 % ----------------------------------------------------------------------------------------------
-\item[\textbf{5.10}]
-\textit{Sufficiency}. Sufficiency is obvious. Remove arbitrary vertex $x$, we can always find a path between an arbitrary pair of vertex, i.e. connected. With \textbf{Thm 5.10(1)}, $G$ is 2-connected.\\
-\textit{Necessity}.
-With \textbf{Thm 5.10(2)}, for any $x,y$, we can find two disjoint paths $x-y$, denoted by $P_1,P_2$. Similarly, two disjoint paths $y-z$  are denoted by $Q_1,Q_2$. If $P_i\cap Q_j = \emptyset, i,j = 1,2$, such a path $x-z$ that go through $y$ exists as $P_i+Q_j$.\\
-If $P_i\cap Q_j \neq \emptyset, \forall i,j = 1,2$, Figure \ref{10} as an example, we can also find a path $x-z$ going through $y$. For example, path $x$ go along $P_2$ to $y$, then along $P_1$ to $b$, finally along $Q_1$ to $z$ is such a path.
+\item[\textbf{5.18}]
+\item[(1)]
+
 
 \end{enumerate}
 
