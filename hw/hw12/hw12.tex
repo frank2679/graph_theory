@@ -1,0 +1,103 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}  % used to insert graph
+\usepackage{subcaption}  % used to insert subgraph
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usetikzlibrary{trees}
+
+%% for code listing
+\usepackage{listings}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=2mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=false, %true,
+  breakatwhitespace=false, %true,
+  tabsize=3
+}
+
+
+\geometry{left=2.5cm,right=3 cm, top=2.5cm,bottom=2.5cm}
+\lhead{Chapter 6-2}
+\chead{Graph Theory HW-12}
+\rhead{Yang Hang, r03942126}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{enumerate}
+% -----------------------------------------------------------------------------
+\item[\textbf{6.10}] 
+ Contracting edge $(0,1),(2,3),(4,5),(5,6),(6,7), (8,9), (10,11), (11,12), (12,13)$ and deleting edge $(4,13), (5,10)$ yield a $K_5$, i.e. $K_5 \leq G$.
+According to \textbf{Wagner Thm}, Headwood graph is not planar graph.
+% -----------------------------------------------------------------------------
+\item[\textbf{6.16}]
+
+% ----------------------------------------------------------------------------------------------
+\item[\textbf{6.17}]
+According to \textbf{Property 6.26}, because $K_{4,4}$ is triangular-free graph, $t(K_{4,4}) \geq \lceil \frac{16}{12}\rceil = 2$. $K_{4,4}$ can be formed by combine two $K_{4,2}$. Hence $t(K_{4,4}) = 2$.
+
+Similarly, $t(K_{5,5}) \geq \lceil \frac{25}{16} \rceil = 2$. Construction of two planar graph to form $K_{5,5}$ as Figure \ref{17}. 
+\begin{figure}[hbp!]     
+    \centering
+    \includegraphics[width=.3\linewidth]{./figure/6_17.png}
+    \caption{Construction of $K_{5,5}$}
+    \label{17}
+\end{figure} 
+
+% ----------------------------------------------------------------------------------------------
+\item[\textbf{6.19}]
+\item[(a)]
+\begin{proof}[$3c(K_{n,n}) \leq f(n) \leq 3 {\binom n2}^2$]
+\textit{Lower Bound} Consider 3 $K_{n,n}$ in $K_{n,n,n}$ and each crossing is calculated only once. Hence the lower bound is $3c(K_{n,n})$.\\
+\textit{Upper Bound} Consider $\binom 32$ selections of two partite sets and $\binom n2$ selections from each partite sets. Then yield the upper bound $3{\binom n2}^2$. 
+\end{proof}
+\item[(b)]
+\begin{proof}
+
+\end{proof}
+\item[(c)]
+\begin{proof} [$f(n) \geq n^3(n-1)/6$]
+$K_{n,n,n}$ contains $n^3$ $K_{n-1,n-1,n-1}$. Crossing formed by vertices two partite sets is counted $n(n-2)^2$ times. Crossing formed by vertices from three partite sets is counted $(n-1)^2(n-2)$ times. Then each crossing is counted at most $(n-1)^2(n-2)$ times. Then $f(n) \geq \frac{n^3}{(n-1)^2(n-2)} f(n-1)$. By recurrence, $f(n) \geq n^3(n-1)f(3)/54$. And from (2), substitute $f(3) \geq 9$ to last inequation yields the result. 
+\end{proof}
+
+\item[(d)]
+\begin{proof}[$f(n) \leq \frac{9}{16} + O(n^3)$]
+
+\end{proof}
+
+% ----------------------------------------------------------------------------------------------
+\item[\textbf{6.20}]
+\item[(a)]
+\begin{proof} [$c(K_{m,n})\geq m\frac{m-1}{5} \lfloor\frac{n}{2}\rfloor \lfloor \frac{n-1}{2}\rfloor$. ]
+$K_{m,n}$ has $\binom m6$ $K_{6,n}$.  Assume $w,x,y,z$ exists a crossing; $x,y$ are among the 6 vertices while $w,z$ are among the n vertices. The crossing appears $\binom {m-2}4$ times. \\
+Hence, $\binom {m-2}4 c(K_{m,n}) \geq \binom m6 c(K_{6,n})$, which substitutes $c(K_{6,n})$ will yield the target result.
+\end{proof}
+\item[(b)]
+\begin{proof} [$c(K_n)\geq \frac{1}{80}n^4 + O(n^3)$.]
+Consider copies $K_{6,n-6}$ in $K_n$. There will be $\binom n6$ copies. As for a crossing $w,x,y,z$, it appears $(\binom 42-2)\binom {n-4}4 = 4\binom {n-4}4$ times.\\
+Hence $4\binom {n-4}4 c(K_n) \geq \binom n6c(K_{6,n})$. Replacing the inequation will yield the result.
+\end{proof}
+\end{enumerate}
+
+\textbf{Bibliography} 
+
+[1] Thickness of graph, retrieve from:  mathworld.wolfram.com/GraphThickness.html
+\end{document}
+

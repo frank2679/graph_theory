@@ -1,0 +1,122 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}  % used to insert graph
+\usepackage{subcaption}  % used to insert subgraph
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usetikzlibrary{trees}
+
+%% for code listing
+\usepackage{listings}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=2mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=false, %true,
+  breakatwhitespace=false, %true,
+  tabsize=3
+}
+
+
+\geometry{left=2.5cm,right=3 cm, top=2.5cm,bottom=2.5cm}
+\lhead{Chapter 6-1}
+\chead{Graph Theory HW-11}
+\rhead{Yang Hang, r03942126}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{enumerate}
+% -----------------------------------------------------------------------------
+\item[\textbf{6.2}] 
+A torus can be unfolded into a plane that vertex in bottom and top is the same while that in left edge and right edge is the same. Figure \ref{2} is an example.
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=.3\linewidth]{./figure/6_2.png}
+	\caption{K7 embedded into a torus \\ ref[1]}
+	\label{2}
+\end{figure} 
+
+% -----------------------------------------------------------------------------
+\item[\textbf{6.3}]
+\begin{proof}
+A plane can be written in a form of $ax+by+cz+d=0$. Substitute $(x,y,z)=(t,t^2,t^3)$ into the equation obtaining a cubic equation. 
+The cubic equation has 3 different solutions at most. Therefore, no such four vertices exist that they all lay on the same plane.
+\end{proof}
+
+% ----------------------------------------------------------------------------------------------
+\item[\textbf{6.4}]
+\item[(1)]
+\begin{proof}
+\textit{A polygon with $ n \leq 5$, there is a vertex inside $G$ can see all vertices inside the polygon.}
+It is trivial when $n=3$. When $n=4$, vertex on the shorter diagonal line works. When $n=5$, sum of interior angle is $540^\circ$ degree.
+If no angle extends $180^{\circ}$, it is convex. Such vertex exists.
+If one angle extends $180^{\circ}$, vertices inside the triangle of the obtuse angle and other two disjoint vertices are such vertices.
+If two angle extends $180^{\circ}$, vertices in the shadow of the Figure \ref{4}.
+\end{proof}
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=.3\linewidth]{./figure/6_4.png}
+	\caption{Polygon(n=5) with two obtuse angles}
+	\label{4}
+\end{figure}
+\item[(2)]
+\begin{proof}
+\textit{Any planar graph has a straight-line drawing.}
+Prove by induction on the number of vertices. 
+Without loss of generality assume that $G$ is maximally planar(means adding any edge will make $G$ not planar). It is because if maximally planar graph is can be straight-line drawn, removing any edges the graph can be still straight-line drawn.\\
+According to \textbf{Corollary 6.8}, planar graph $G$ always has vertex $\delta(v)\leq 5$. Remove $v$ and triangulate the face that is created by it's removal to create $G^\prime$. $G^\prime$ is a maximally planar graph which has fewer vertices than $G$. With induction hypothesis, $G^\prime$ can be straight-line drawn.
+Then to turn $G^\prime$ into a straight line drawing of $G$ first erase allthe edges which were used to triangulate the face the removal $v$ created. Next by \textbf{(1)}, we know there is a vertex "see" all vertices in the face, since there are 5 vertices on the face. We add $v$ at such a location, and add the lines between it and the vertices of the face. This gives a straight line drawing of $G$. 
+
+\end{proof}
+% ----------------------------------------------------------------------------------------------
+\item[\textbf{6.6}]
+\begin{proof}
+If a graph is isomorphic with its dual, it is connected, because any graph's dual graph is connected. 
+With Euler polyhedral formula, we have $n-e+f=2$. Since isomorphic, $n=f$. Then we have $e=2n-2$.
+\end{proof}
+Figure \ref{6} is an example of $n=5$ that the original plane graph is isomorphic with its dual. Its $n-1$ nodes form a cycle and the left one is in the center joining all other nodes. 
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=.3\linewidth]{./figure/6_6.png}
+	\caption{$n=5$, Plane graph isomorphic with its dual}
+	\label{6}
+\end{figure} 
+
+% ----------------------------------------------------------------------------------------------
+\item[\textbf{6.7}]
+\begin{proof}
+According to \textbf{Corollary 6.8}, for any planar graph $G$, $\delta(G) \leq 5$. Therefore, There is no 6-connected planar graph. 
+\end{proof}
+
+\item[\textbf{6.9}]
+\begin{proof}
+\textit{A planar graph with n nodes and girth of k has at most $(n-2)\frac{k}{k-2}$.} Each edge is calculated by both sides of faces, while each face has at least k edges. We have $2e \geq kf$. Substitute $n-e+f=2$ into the inequality. We will have $e\geq (n-2)\frac{k}{k-2}$.
+
+\textit{Petersen graph is not planar graph.}
+Petersen graph $G$, $n=10, e=15, k=5$. According to above, $e \leq 13$, which results in contradiction. Petersen graph is not planar graph.
+\end{proof}
+
+\end{enumerate}
+\textbf{Reference} 
+
+[1] http://www3.math.tu-berlin.de/geometrie/Lehre/WS12/MathVis/resources/projects\\/loeweSiegSlides.pdf
+
+
+\end{document}
+
