@@ -1,0 +1,94 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}  % used to insert graph
+\usepackage{subcaption}  % used to insert subgraph
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usetikzlibrary{trees}
+
+%% for code listing
+\usepackage{listings}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=2mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=false, %true,
+  breakatwhitespace=false, %true,
+  tabsize=3
+}
+
+
+\geometry{left=2.5cm,right=3 cm, top=2.5cm,bottom=2.5cm}
+\lhead{Chapter 7-1}
+\chead{Graph Theory HW-13}
+\rhead{Yang Hang, r03942126}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{enumerate}
+% -----------------------------------------------------------------------------
+\item[\textbf{7.5}] 
+\textit{$G$ is m-colorable if and only if $\alpha (G\square K_m) \geq n(G)$.}
+\begin{proof} 
+\textit{Necessity} 
+$\chi(G\square K_m) = max\lbrace \chi(G),\chi(K_m)\rbrace = m$ since $G$ is m-colorable. And since $\chi(H)\geq \frac{n(H)}{\alpha(H)}$, $\alpha(G\square K_m) \geq \frac{n(G)m}{m} = n(G)$.
+
+\textit{Sufficiency}
+
+\end{proof}
+
+
+% -----------------------------------------------------------------------------
+\item[\textbf{7.7}]
+\item[(a)]
+\begin{proof}
+Construct a graph $G$, area as vertex, adjacent if areas share a common edge. Because no three intersecting at a point, $\omega(G) = 2$ and no odd cycle exists; i.e. $G$ is a bipartite. We can find an orientation $D$ (from partite $X$ to $Y$) such that $ l(D) = 1$. According to \textbf{Gallai's Thm}, then $\omega (G) \leq \chi(G) \leq 1+l(D) =2$.  
+\end{proof}
+\item[(b)]
+We can always map the vertices to a line disjointly, forming an ordering of vertex. Since no three intersects at a point, each vertex has at most 2 neighbors earlier in the ordering. Thus, $\chi(G) \leq 3$.
+
+% ----------------------------------------------------------------------------------------------
+\item[\textbf{7.8}]
+
+%\begin{figure}[hbp!]     
+%    \centering
+ %   \includegraphics[width=.3\linewidth]{./figure/6_17.png}
+  %  \caption{Construction of $K_{5,5}$}
+   % \label{17}
+%\end{figure} 
+
+% ----------------------------------------------------------------------------------------------
+\item[\textbf{7.10}]
+\textit{$\chi(G_{n,k})=k+1$ if $k+1$ divides $n$ and $\chi(G_{n,k})$ does not divides $n$. }
+\begin{proof}
+According to the construction of the graph $G_{n,k}$, cliques of size $k+1$ are formed. Then color the graph $G_{n,k}$ with $k+1$ colors. If $k+1$ divides $n$, $1,2,3...,k+1,1,2,3...,k+1$ will be a proper coloring of graph $G_{n,k}$.
+
+If $k+1$ does not divides $n$, let $n = q(k+1) + r = (q-r)(k+1) + r(k+2), 1\leq r < (k+1)$. Since $n\geq k(k+1)$, $q\geq k \geq r$. Therefore, a proper coloring exists that color $q-r$ times with $k+1$ colors and $r$ times with $k+2$ colors. $\chi(G_{n,k}) = k+2$.
+\end{proof}
+
+
+% ----------------------------------------------------------------------------------------------
+\item[\textbf{7.12}]
+
+\end{enumerate}
+
+\textbf{Bibliography} 
+
+\end{document}
+
