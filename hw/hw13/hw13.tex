@@ -50,9 +50,10 @@
 $\chi(G\square K_m) = max\lbrace \chi(G),\chi(K_m)\rbrace = m$ since $G$ is m-colorable. And since $\chi(H)\geq \frac{n(H)}{\alpha(H)}$, $\alpha(G\square K_m) \geq \frac{n(G)m}{m} = n(G)$.
 
 \textit{Sufficiency}
-
+If $\alpha(G\square K_m) \geq n(G)$, $\alpha(G\square K_m) = n(G)$, because $G\square K_m$ contain $n(G)$ copies of $K_m$. $\alpha(G\square K_m)$ contains at most one vertex of each copy of $K_m$.\\
+Not complete.
 \end{proof}
-
+Question: Why not is this proposition be stated as: \textit{$G$ is m-colorable if and only if $\alpha (G\square K_m) = n(G)$}? 
 
 % -----------------------------------------------------------------------------
 \item[\textbf{7.7}]
@@ -63,17 +64,17 @@ Construct a graph $G$, area as vertex, adjacent if areas share a common edge. Be
 \item[(b)]
 We can always map the vertices to a line disjointly, forming an ordering of vertex. Since no three intersects at a point, each vertex has at most 2 neighbors earlier in the ordering. Thus, $\chi(G) \leq 3$.
 
-% ----------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------
 \item[\textbf{7.8}]
+\textit{For $P_4$-free graph, greedy algorithm produces optimal coloring whatever the ordering of vertices.}
+\begin{proof}
+Suppose that the algorithm uses $k$ colors for the ordering $v_1,...,v_n$ and let $i$ be the smallest integer such that $G$ has a clique consisting of vertices assigned colors $i$ through $k$ in this coloring. Prove that $i=1$ which means it is a optimal coloring.\\
+Let $Q = \lbrace u_i,...,u_k \rbrace$ be such a clique. If $i>1$, by greedy coloring algorithm, some elements of $Q$ has earlier neighbours with color $i-1$.
+We assume $x$ with color $i-1$ as the vertex having most neighbours of $Q$. Then find $z\in Q, z \nleftrightarrow x$, if not, $x$ would be included into $Q$. 
+Next find $w$ which is a neighbour of $z$ with color $i-1$. And find $y\in (N(x)\cap Q)-N(w)$. Since $x,w$ are not adjacent for their colors, $y\nleftrightarrow x, y\nleftrightarrow w$, $w,z,y,x$ is a $P_4$. It contradicts the condition. Thus $i=1$.
 
-%\begin{figure}[hbp!]     
-%    \centering
- %   \includegraphics[width=.3\linewidth]{./figure/6_17.png}
-  %  \caption{Construction of $K_{5,5}$}
-   % \label{17}
-%\end{figure} 
-
-% ----------------------------------------------------------------------------------------------
+\end{proof}
+%----------------------------------------------------------------------------------------------
 \item[\textbf{7.10}]
 \textit{$\chi(G_{n,k})=k+1$ if $k+1$ divides $n$ and $\chi(G_{n,k})$ does not divides $n$. }
 \begin{proof}
@@ -85,10 +86,23 @@ If $k+1$ does not divides $n$, let $n = q(k+1) + r = (q-r)(k+1) + r(k+2), 1\leq 
 
 % ----------------------------------------------------------------------------------------------
 \item[\textbf{7.12}]
+\textit{For unit-distance graph $G$, $4\leq\chi(G) \leq 7$}
+\begin{proof}
+\textit{Lower bound.} From the definition of unit-distance graph, we find the $\omega(G) = 3$. We claim 3-coloring is not a proper coloring for $G$. 
+Consider two equilateral triangles of side-length one sharing an edge. Two corners of the common edge are color 1 and color 2. The other two disjoint corners are color 3, since their distance is $\sqrt{3}$. 
+Then consider a circle with radius $\sqrt{3}$. The vertex on the circle must be the same with the center. However, two vertices with distance 1 exist on the circle. Therefore 3-coloring is not a proper coloring. 
 
+\textit{Upper bound.} Give an explicit 7-coloring of graph $G$ as \ref{7_12}. Color 7 hexagons(six hexagons surround one, each has maximal diameter 1) with 7 colors. Move such a 7-color panel to fill the plane. 
+The shortest distance between two hexagons with the same color is greater than 1. It is a proper coloring. 
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.3]{./figure/7_12.png}
+	\caption{Proper 7-coloring of graph}
+	\label{7_12}
+\end{figure}
+\end{proof}
 \end{enumerate}
 
-\textbf{Bibliography} 
 
 \end{document}
 
