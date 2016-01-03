@@ -73,7 +73,7 @@ It is easy to give a proper 4-coloring of $G_2$. What's more, one color class co
 \begin{minipage}{.5\textwidth}
   \centering
   \includegraphics[width=.8\linewidth]{./figure/7_17.png}
-  \caption{Outerplanar graph}
+  \caption{An example of Art Gallery}
   \label{7_17}
 \end{minipage}
 \end{figure}
@@ -81,11 +81,23 @@ It is easy to give a proper 4-coloring of $G_2$. What's more, one color class co
 \item[\textbf{7.17}]
 \item[(a)]
 \textit{Every outerplanar graph is 3-chromatic.}
-\begin{proof}
-Outerplanar graph is 
+\begin{proof} With \textbf{Four Color Thm}\\
+Outerplanar graph is planar. So it can be 4-colorable according to \textbf{Four Color Thm}. Given a sequence of a outerplanar and using greedy coloring algorithm, only when four vertices $v_a,v_b,v_c, v_d$ are adjacent to each other, i.e., subdivision of $K_4$ as a subgraph, 4 colors are needed(\textbf{Dirac's Thm}). However, outerplanar graph is $K_4$-free. Therefore, outerplanar graph is 3-chromatic.
 \end{proof}
+\item[(b)]\textit{Every outerplanar graph is 3-chromatic.}
+\begin{proof} Without \textbf{Four Color Thm}\\
+We prove by giving a 3-coloring of outerplanar graph. Outerplanar graph has all vertices as the boundary of exterior plane. \\
+If an outerplanar graph $G$ has cycles $C_i$, every two cycles share only one edge(if not, some vertex will not be the boundary of exterior plane). And see $C_i$ as vertex sequence of graph $G^\prime$, no cycle exists in $G^\prime$, i.e., a tree.
+We have known that $C_i$ is 3-chromatic(when $n(C_i)$ is odd, 3-coloring is needed). When one cycle is colored, we can always color the adjacent cycles with 3 colors until all cycles are colored. The remaining parts, which are trees, can be 2-colored.  \\
+If no cycle exists, $G$ will be a tree, which is 2-chromatic. Then, a 3-coloring is given. 
+\end{proof}
+\item[(c)]
+\textit{Art Gallery Theorem}\\
+Given a polygon as Figure \ref{7_17}, we can add some straight lines to triangulate the polygons. 
+Consider a 3-coloring of such a polygon so that each triangular is colored with 3 colors(see Figure \ref{7_17}). Then each color class has at least $\lfloor n/3 \rfloor$ elements.
+In each triangular, the corner can see all points of the triangle. Hence, put a guard at the place of one color class will see the whole art gallery, i.e., $\lfloor n/3 \rfloor$ guards are needed.
 %----------------------------------------------------------------------------------------------
-\item[\textbf{7.10}]
+\item[\textbf{7.19}]
 \textit{$\chi(G_{n,k})=k+1$ if $k+1$ divides $n$ and $\chi(G_{n,k}) = k+2$ if $k+1$ does not divide $n$. }
 \begin{proof}
 According to the construction of the graph $G_{n,k}$, cliques of size $k+1$ are formed. Then color the graph $G_{n,k}$ with $k+1$ colors. If $k+1$ divides $n$, $1,2,3...,k+1,1,2,3...,k+1$ will be a proper coloring of graph $G_{n,k}$.
@@ -95,15 +107,12 @@ If $k+1$ does not divides $n$, let $n = q(k+1) + r = (q-r)(k+1) + r(k+2), 1\leq 
 
 
 % ----------------------------------------------------------------------------------------------
-\item[\textbf{7.12}]
-\textit{For unit-distance graph $G$, $4\leq\chi(G) \leq 7$}
+\item[\textbf{7.20}]
+\textit{Every torus-embedded graph is 7 chromatic.}
 \begin{proof}
-\textit{Lower bound.} From the definition of unit-distance graph, we find the $\omega(G) = 3$. We claim 3-coloring is not a proper coloring for $G$. 
-Consider two equilateral triangles of side-length one sharing an edge. Two corners of the common edge are color 1 and color 2. The other two disjoint corners are color 3, since their distance is $\sqrt{3}$. 
-Then consider a circle with radius $\sqrt{3}$. The vertex on the circle must be the same with the center. However, two vertices with distance 1 exist on the circle. Therefore 3-coloring is not a proper coloring. 
-
-\textit{Upper bound.} Give an explicit 7-coloring of graph $G$ as Figure \ref{7_12}. Color 7 hexagons(six hexagons surround one, each has maximal diameter 1) with 7 colors. Move such a 7-color panel to fill the plane. 
-The shortest distance between two hexagons with the same color is greater than 1. It is a proper coloring. 
+For a torus-embedded graph $G$, if we can find a region which has at most 6 adjacent regions, then induct on the $n(G)$. Given $G$, when we shrink a region to a point, then with the induction hypothesis, the remaining graph will be 7 chromatic. Add the removing region will always be colored with one of the 7 colors because it has only six adjacent regions.\\
+Now, we prove such a region exists. Because each region has at most 3 edges, each region will have at least 3 adjacent regions, i.e., $3n \leq 2e$. With Eular's formula on torus $n-e+f=0$, we have $e \leq 3f$. 
+If every region has more than 7 adjacent regions, $7f \leq 2e$. Then $2e \geq 7f \geq 6f \geq 2e$, which is a contradiction.
 \end{proof}
 \end{enumerate}
 
