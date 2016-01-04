@@ -44,23 +44,24 @@
 \begin{enumerate}
 % -----------------------------------------------------------------------------
 \item[\textbf{7.13}] 
-\textit{$G$ is m-colorable if and only if $\alpha (G\square K_m) \geq n(G)$.}
-\begin{proof} 
-\textit{Necessity} 
-$\chi(G\square K_m) = max\lbrace \chi(G),\chi(K_m)\rbrace = m$ since $G$ is m-colorable. And since $\chi(H)\geq \frac{n(H)}{\alpha(H)}$, $\alpha(G\square K_m) \geq \frac{n(G)m}{m} = n(G)$.
+\begin{proof}
+\textit{All planar graph with at most 12 vertices can be 4-colored.}
+We prove by induction on $n(G)$. For planar graph, we have $e\leq 3n-6$ and $\delta (G) \leq 5$. $ \sum_{v\in V} deg(v) = 2e \leq 60$. When $\delta (G) = 5$, it can only be icosahedron, which is 4-colorable.
 
-\textit{Sufficiency}
-If $\alpha(G\square K_m) \geq n(G)$, $\alpha(G\square K_m) = n(G)$, because $G\square K_m$ contain $n(G)$ copies of $K_m$. $\alpha(G\square K_m)$ contains at most one vertex of each copy of $K_m$.\\
-Not complete.
+\setlength\parindent{12pt} For $\delta(G) \leq 4$, we can always find a vertex $\lbrace v: deg(v)\leq 4\rbrace$. By induction hypothesis, the remaining graph without $v$ is 4-colorable. For $\delta(G)=4$, we can find a Kempe chain. If the chain connects two non-sequential neighbours of $v$, we can always find another Kempe chain which will not connect non-sequential neighbours of $v$. Then exchanging the colors on the chain yields a color for $v$. That's all.
+
+\textit{Planar graph with at most 32 edges is 4-colorable.}
+For planar graph, $\delta (G) \leq 5$. When $\delta (G) = 5$, $5\cdot 13>2e=64$ which implies that $n(G)\leq 12$. Apply above conclusion, it is 4-colorable.
+When $\delta (G) \leq 4$, it is the same way with above to prove 4-colorable. 
 \end{proof}
-Question: Why not does this proposition be stated as: \textit{$G$ is m-colorable if and only if $\alpha (G\square K_m) = n(G)$}? 
 
 % -----------------------------------------------------------------------------
 \item[\textbf{7.16}]
-\textit{For the graph $G_n$ with even n, every proper 4-coloring of $G_n$ uses each color on exactly n vertices.}
 \begin{proof}
-$G_n$ is constructed by adding a new 4-cycle surrounding $G_{n-1}$. $G_2$ is as Figure \ref{7_16}. When $n$ is even, two consecutive 4-cycles will be isomorphic to $G_2$. If such $G_2$ is proved each color class covers exactly 2 vertices, adjustment could be implemented to color all consecutive $G_2$. Following is the proof of proper 4-coloring of $G_2$ using each color on exactly 2 vertices.\\
-It is easy to give a proper 4-coloring of $G_2$. What's more, one color class could cover at most 2 vertices since we cannot find three vertices which are dis-adjacent to each other.  Therefore, one color covers exactly 2 vertices.
+\textit{For the graph $G_n$ with even n, every proper 4-coloring of $G_n$ uses each color on exactly n vertices.}
+$G_n$ is constructed by adding a new 4-cycle surrounding $G_{n-1}$. $G_2$ is as Figure \ref{7_16}. When $n$ is even, two consecutive 4-cycles will be isomorphic to $G_2$. If such $G_2$ is proved each color class covers exactly 2 vertices, adjustment could be implemented to color all consecutive $G_2$. Following is the proof of proper 4-coloring of $G_2$ using each color on exactly 2 vertices.
+
+\setlength\parindent{12pt} It is easy to give a proper 4-coloring of $G_2$. What's more, one color class could cover at most 2 vertices since we cannot find three vertices which are dis-adjacent to each other.  Therefore, one color covers exactly 2 vertices.
 \end{proof}
 
 \begin{figure}[ht!]
@@ -80,38 +81,42 @@ It is easy to give a proper 4-coloring of $G_2$. What's more, one color class co
 %----------------------------------------------------------------------------------------------
 \item[\textbf{7.17}]
 \item[(a)]
-\textit{Every outerplanar graph is 3-chromatic.}
-\begin{proof} With \textbf{Four Color Thm}\\
+
+\begin{proof} (With \textbf{Four Color Thm})
+\setlength\parindent{12pt} \textit{Every outerplanar graph is 3-chromatic.}
 Outerplanar graph is planar. So it can be 4-colorable according to \textbf{Four Color Thm}. Given a sequence of a outerplanar and using greedy coloring algorithm, only when four vertices $v_a,v_b,v_c, v_d$ are adjacent to each other, i.e., subdivision of $K_4$ as a subgraph, 4 colors are needed(\textbf{Dirac's Thm}). However, outerplanar graph is $K_4$-free. Therefore, outerplanar graph is 3-chromatic.
 \end{proof}
-\item[(b)]\textit{Every outerplanar graph is 3-chromatic.}
-\begin{proof} Without \textbf{Four Color Thm}\\
-We prove by giving a 3-coloring of outerplanar graph. Outerplanar graph has all vertices as the boundary of exterior plane. \\
-If an outerplanar graph $G$ has cycles $C_i$, every two cycles share only one edge(if not, some vertex will not be the boundary of exterior plane). And see $C_i$ as vertex sequence of graph $G^\prime$, no cycle exists in $G^\prime$, i.e., a tree.
-We have known that $C_i$ is 3-chromatic(when $n(C_i)$ is odd, 3-coloring is needed). When one cycle is colored, we can always color the adjacent cycles with 3 colors until all cycles are colored. The remaining parts, which are trees, can be 2-colored.  \\
-If no cycle exists, $G$ will be a tree, which is 2-chromatic. Then, a 3-coloring is given. 
+
+\item[(b)]
+\begin{proof} (Without \textbf{Four Color Thm})
+\textit{Every outerplanar graph is 3-chromatic.}
+We prove by giving a 3-coloring of outerplanar graph. Outerplanar graph has all vertices as the boundary of exterior plane. 
+
+\setlength\parindent{12pt} If an outerplanar graph $G$ has cycles $C_i$, every two cycles share only one edge(if not, some vertex will not be the boundary of exterior plane). And see $C_i$ as vertex sequence of graph $G^\prime$, no cycle exists in $G^\prime$, i.e., a tree.
+
+\setlength\parindent{12pt} We have known that $C_i$ is 3-chromatic(when $n(C_i)$ is odd, 3-coloring is needed). When one cycle is colored, we can always color the adjacent cycles with 3 colors until all cycles are colored. The remaining parts, which are trees, can be 2-colored.  
+
+\setlength\parindent{12pt} If no cycle exists, $G$ will be a tree, which is 2-chromatic. Then, a 3-coloring is given. 
 \end{proof}
 \item[(c)]
-\textit{Art Gallery Theorem}\\
+\textit{Art Gallery Theorem}.
 Given a polygon as Figure \ref{7_17}, we can add some straight lines to triangulate the polygons. 
 Consider a 3-coloring of such a polygon so that each triangular is colored with 3 colors(see Figure \ref{7_17}). Then each color class has at least $\lfloor n/3 \rfloor$ elements.
 In each triangular, the corner can see all points of the triangle. Hence, put a guard at the place of one color class will see the whole art gallery, i.e., $\lfloor n/3 \rfloor$ guards are needed.
 %----------------------------------------------------------------------------------------------
 \item[\textbf{7.19}]
-\textit{$\chi(G_{n,k})=k+1$ if $k+1$ divides $n$ and $\chi(G_{n,k}) = k+2$ if $k+1$ does not divide $n$. }
-\begin{proof}
-According to the construction of the graph $G_{n,k}$, cliques of size $k+1$ are formed. Then color the graph $G_{n,k}$ with $k+1$ colors. If $k+1$ divides $n$, $1,2,3...,k+1,1,2,3...,k+1$ will be a proper coloring of graph $G_{n,k}$.
-
-If $k+1$ does not divides $n$, let $n = q(k+1) + r = (q-r)(k+1) + r(k+2), 1\leq r < (k+1)$. Since $n\geq k(k+1)$, $q\geq k \geq r$. Therefore, a proper coloring exists that color $q-r$ times with $k+1$ colors and $r$ times with $k+2$ colors. $\chi(G_{n,k}) = k+2$.
-\end{proof}
+\textit{ Whether exist such an edge $xy$ that $\displaystyle \min_{xy\in E} (deg(x)+deg(y))>11$. }
+Add a vertex in each plane of regular icosahedron and join the vertex with all the vertices of the plane $\displaystyle \min_{xy\in E} (deg(x)+deg(y))=13$.
 
 
 % ----------------------------------------------------------------------------------------------
 \item[\textbf{7.20}]
-\textit{Every torus-embedded graph is 7 chromatic.}
+
 \begin{proof}
-For a torus-embedded graph $G$, if we can find a region which has at most 6 adjacent regions, then induct on the $n(G)$. Given $G$, when we shrink a region to a point, then with the induction hypothesis, the remaining graph will be 7 chromatic. Add the removing region will always be colored with one of the 7 colors because it has only six adjacent regions.\\
-Now, we prove such a region exists. Because each region has at most 3 edges, each region will have at least 3 adjacent regions, i.e., $3n \leq 2e$. With Eular's formula on torus $n-e+f=0$, we have $e \leq 3f$. 
+\textit{Every torus-embedded graph is 7 chromatic.}
+For a torus-embedded graph $G$, if we can find a region which has at most 6 adjacent regions, then induct on the $n(G)$. Given $G$, when we shrink a region to a point, then with the induction hypothesis, the remaining graph will be 7 chromatic. Add the removing region will always be colored with one of the 7 colors because it has only six adjacent regions.
+
+\setlength\parindent{12pt} Now, we prove such a region exists. Because each region has at most 3 edges, each region will have at least 3 adjacent regions, i.e., $3n \leq 2e$. With Eular's formula on torus $n-e+f=0$, we have $e \leq 3f$. 
 If every region has more than 7 adjacent regions, $7f \leq 2e$. Then $2e \geq 7f \geq 6f \geq 2e$, which is a contradiction.
 \end{proof}
 \end{enumerate}
