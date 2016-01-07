@@ -1,0 +1,133 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{graphicx}  % used to insert graph
+\usepackage{subcaption}  % used to insert subgraph
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usetikzlibrary{trees}
+
+%% for code listing
+\usepackage{listings}
+\usepackage{color}
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=2mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=false, %true,
+  breakatwhitespace=false, %true,
+  tabsize=3
+}
+
+
+\geometry{left=2.5cm,right=3 cm, top=2.5cm,bottom=2.5cm}
+\lhead{Chapter 8-1}
+\chead{Graph Theory HW-15}
+\rhead{Yang Hang, r03942126}
+
+\begin{document}
+\pagestyle{fancy}
+\begin{enumerate}
+% -----------------------------------------------------------------------------
+\item[\textbf{7.21}]
+\begin{proof}
+\textit{$\chi^\prime(Q_k)=\bigtriangleup(Q_k)$}
+Prove by explicit coloring. The edges between vertices differing in coordinate $j$ form a complete matching. Over the $k$ choices of $j$, these partition the edges.
+
+\setlength\parindent{24pt} \textit{$\chi^\prime(K_{m,n})=\bigtriangleup(K_{m,n})$}
+Prove by explicit coloring. Assume $m\leq n$, then $\bigtriangleup(G) = n$. If the vertices are $X\cup Y$ with $X=x_1,\ldots x_m, Y= y_1,\ldots y_n$. We give the edge $x_iy_j$ with color labelled $i+j(mod n)$. Since incident edges differ in the index of each vertex, they receive different colors. 
+\end{proof}
+
+% -----------------------------------------------------------------------------
+\item[\textbf{7.24}] 
+\begin{proof}
+\textit{Given a regular multigraph $G$ with cut-vertex, $\chi^\prime (G) > \delta(G)$. }
+
+\setlength\parindent{24pt}Since $G$ is regular and has cut-vertex $x$, one color class will be 1-factor(a perfect matching). So $n(G)$ is even.
+$G-x$ has odd vertices, so we can find a component $H$ which has odd vertices and a vertex $\lbrace y: y\not\in H, y \leftrightarrow x \rbrace$ . 
+Then given a color class containing $xy$, it is also a 1-factor which contains a 1-factor of $H$. However, it is impossible for odd $n(H)$.
+\end{proof}
+
+% -----------------------------------------------------------------------------
+\item[\textbf{7.25}]
+\item[(a)]
+\begin{proof}
+\textit{If $G$ doesn't have a component of odd cycle, $G$ has a 2-edge coloring that uses both colors on each vertex $\lbrace v: deg(v) \geq 2\rbrace$. }
+If $G$ is Eulerian, we can find a Eular Tour with endpoint $s$ and alternate two colors along the tour. Then each vertex $v$ except the endpoint has two colors on entering and leaving edges. When $e(G)$ is even, the endpoint also share two colors. When $e(G)$ is odd and $deg(s)>2$, it works. When $e(G)$ is odd and no vertex with degree at least 4, $G$ will be a odd cycle. 
+
+\setlength\parindent{24pt} If $G$ is not Eulerian, adding a vertex $x$ and joining $x$ with vertices with odd degree yield a Eulerian graph $G^\prime$. Find a Euler Tour from $x$. Alternate two colors along the tour. For $\lbrace v: deg_G(v) is even\rbrace$, $v$ have two colors. For $\lbrace v: deg_G(v) is odd\rbrace$, $v$ also have two colors because $deg_{G^\prime}(v)\geq 4$ among which only one edge is connected to $x$. 
+\end{proof}
+
+\item[(b)]
+\begin{proof}
+\setlength\parindent{24pt} Subgraph $H$ has components $C_1$ which contains $u$.
+If $C_1$ is not an odd cycle, according to part (a) we can recolor $C_1$ so that  for $\lbrace v: v\not = u\rbrace$, $c(v)$ does not decrease. But $c(u)$ increases by one, which means $f$ is not optimal $k$-edge-coloring. It is a contradiction.   
+\end{proof}
+
+\item[(c)]
+\begin{proof}
+\textit{ If $G$ is bipartite, $G$ could be $\bigtriangleup(G)-edge-coloring$.}
+We prove by contradiction. If a bipartite graph $G$ can not be $\bigtriangleup (G)-edge-coloring$. The vertex $\lbrace v: deg(v) = \bigtriangleup(G)\rbrace$ will have at least one color missed and another color appears two times at $v$. Then with result of part (b), $G$ has a subgraph of odd cycle which contradict with property of bipartite graph.  
+\end{proof}
+
+\begin{figure}[ht!]
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.8\linewidth]{./figure/7_25.png}
+  \caption{Subgraph $H$}
+  \label{7_25}
+\end{minipage}
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.7\linewidth]{./figure/8_2.png}
+  \caption{Hamiltonian cycle in 8x8}
+  \label{8_2}
+\end{minipage}%
+
+\end{figure}
+%----------------------------------------------------------------------------------------------
+\item[\textbf{8.2}]
+\item[(a)]
+
+\begin{proof} 
+\textit{Given Hamiltonian Bipartite graph $G$ and two vertices $\lbrace x,y: x,y \in V(G) \rbrace$, $G-x-y$ has perfect matching if and only if $x,y$ are in different partites.}
+
+\setlength\parindent{24pt} $"\Rightarrow"$ Because $G$ is bipartite graph and has Hamilton cycle, the two partites $G_X,G_Y$ have same number of vertices. Assume $G^\prime = G-x-y$, since $G^\prime$ has perfect matching, $n(G^\prime_X) = n(G^\prime_Y)$. Hence, $x,y$ are in different partites.
+
+\setlength\parindent{24pt} $"\Leftarrow"$ Assume $C$ as the Hamilton cycle of $G$. Because $x,y$ are in different partites, the two paths obtained by removing $x,y$ both have even vertices. Then $G-x-y$ has an explicit perfect matching.
+\end{proof}
+
+\item[(b)]
+\begin{proof} 
+\setlength\parindent{24pt} This problem can be transferred to problem (a). Assume the chessboard as such a graph $G$. Grids on the chessboard are vertices. Join two grids if they share an edge. See Figure \ref{8_2}, a bold line which is a cycle is a Hamiltonian cycle. Vertices are divided into two partites according to their color(black and white). 
+Hence, $G$ is a Hamiltonian bipartite graph. Remove two grids so that remaining chessboard can be divided into multiple 1x2 rectangular is equal to $G-x-y$ has perfect matching. The two removed grids with different colors equals to two $x,y$ are in different partites. Therefore, it is proved with problem (a).
+\end{proof}
+
+% ----------------------------------------------------------------------------------------------
+\item[\textbf{8.5}]
+
+\begin{proof}
+\textit{Cube of connected graph with at least 3 vertices has Hamiltonian cycle.}
+Because cube of $G$ contains cube of spanning tree of $G$, it suffices to prove a stronger claim for trees $T$. Given an edge $xy\in E(T)$, remove $xy$. Two subtrees called $R,S$ form containing $x,y$ respectively.
+Find vertex $\lbrace w: w\leftrightarrow x\rbrace, \lbrace z: z\leftrightarrow y \rbrace$. Without loss of generality, $n(R) \leq n(S)$. 
+With the induction hypothesis, $R^3, S^3$ both have Hamiltonian cycle. $T^3$ contains $R^3$ and $S^3$. If $n(R) \geq 3$, we can obtain Hamiltonian cycle of $T^3$ by replacing $xw, yz$ with $xy, wz$. $wz$ exists because $d(w,z) \leq 3$. If $n(R)=2$, replace $yz$ with $xy, wz$. If $n(R)=1$, replace $yz$ with $xy, xz$.  
+\end{proof}
+\end{enumerate}
+
+
+\end{document}
+
